@@ -1,0 +1,11 @@
+# System Files
+.DS_Store
+Thumbs.db
+
+# gitkeep
+.gitkeep
+
+# sandbox
+.codesandbox
+.idea
+package.json
