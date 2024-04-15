@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>JavaScriptクイズ①</title>
+  </head>
+  <body>
+    <p id="trident" class="school">トライデントコンピュータ専門学校</p>
+    <ul>
+      <li class="red">赤</li>
+      <li class="blue">青</li>
+      <li class="orange">オレンジ</li>
+    </ul>
+
+    <style>
+      #trident {
+        font-weight: bold;
+        font-size: 1.5em;
+      }
+      .colorRed {
+        color: red;
+      }
+      .colorBlue {
+        color: blue;
+      }
+      .colorOrange {
+        color: orange;
+      }
+    </style>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.js"
+      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      //ここに書いたJavaScriptのみ送ってください。
+
+      const title = document.querySelector(".school");
+      console.log(title);
+
+      const listRed = document.querySelector(".red");
+      console.log(listRed);
+      const listBlue = document.querySelector(".blue");
+      console.log(listBlue);
+      const listOrange = document.querySelector(".orange");
+      console.log(listOrange);
+
+      listRed.addEventListener(
+        "mouseover",
+        () => {
+          title.style.color = "red";
+        },
+        false
+      );
+
+      listBlue.addEventListener(
+        "mouseover",
+        () => {
+          title.style.color = "blue";
+        },
+        false
+      );
+      listOrange.addEventListener(
+        "mouseover",
+        () => {
+          title.style.color = "orange";
+        },
+        false
+      );
+    </script>
+  </body>
+</html>

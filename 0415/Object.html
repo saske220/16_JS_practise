@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>オブジェクトの復習</title>
+  </head>
+  <body>
+    <h1>オブジェクトのサンプル①</h1>
+    <script>
+      // オブジェクトの定義
+      const parson = {
+        // プロパティ
+        name: "", //""は空文字といってデータが何もない文字列を意味しています。
+        age: 0, // メソッド
+        information: function () {
+          return "名前：" + this.name + "\n年齢：" + this.age;
+        },
+      }; // プロパティの値を代入
+      parson.name = "山田太郎";
+      parson.age = 18;
+
+      // 情報の開示
+      const info = parson.information();
+      console.log(info);
+
+      //りんごを表示します。
+      const dict = { apple: "りんご", banana: "バナナ", orange: "オレンジ" };
+      console.log(dict.apple);
+      console.log(dict["apple"]); //ブランケット気泡の場合は、文字列で
+
+      //内容を書き換える
+      dict.apple = "林檎";
+      console.log(dict);
+
+      //ぶどうを加える
+
+      dict.grape = "ぶどう";
+      console.log(dict);
+
+      //オブジェクトの要素を削除する。
+      delete dict.orange;
+      console.log(dict);
+    </script>
+  </body>
+</html>
