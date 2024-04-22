@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>オブジェクト演習</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/modern-css-reset/dist/reset.min.css"
+    />
+    <style>
+      .movies {
+        padding: 2rem;
+      }
+      .contents {
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        column-gap: 5%;
+      }
+      .contents dl {
+        width: 30%;
+        margin: 2em 0;
+      }
+      img {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="movies">
+      <h1>【公式】ちいかわ</h1>
+      <div class="contents">
+        <!-- 下記の用なマークアップで追加
+        <dl>
+          <dt><span>第0話</span>題名</dt>
+          <dd>
+            <a href="https://www.youtube.com/watch?v=Youtubeid">
+              <img src="画像へのパス" alt="代替テキスト" />
+            </a>
+          </dd>
+        </dl> -->
+      </div>
+    </section>
+
+    <!-- モジュールを読み込みたい -->
+    <script src="./main.js" type="module"></script>
+  </body>
+</html>

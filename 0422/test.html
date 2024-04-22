@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>フォーム</title>
+</head>
+<body>
+
+    <div class="wrapper">
+    <h1>申し込みフォーム</h1>
+    <form>
+        <label for="yourN">氏名：<input type="text" value="十来 電人" id="yourN"></label>
+        <label for="schoolN">学校名：<input type="text" value="トライデントコンピュータ専門学校" id="schoolN"></label>
+        <label for="telN">電話番号：<input type="tel" value="052-581-0581" id="telN"></label>
+        <button type="button">送信</button>
+    </form>
+    <h2>結果</h2>
+    <div class="result"></div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        //ここに書いてください。
+
+        const yourN = document.querySelector("#yourN");
+        console.log(yourN)
+        const schoolN =document.querySelector("#schoolN");
+         console.log(schoolN)
+           const telN =document.querySelector("#telN");
+         console.log(telN)
+
+         const btn = document.querySelector("button");
+          console.log(btn)
+
+          const result = document.querySelector(".result")
+           console.log(result)
+
+
+
+           btn.addEventListener('click',function(){
+            console.log("クリックされました")
+
+
+
+           });
+
+    </script>
+</body>
+</html>
+
+</body>
+</html>
