@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>三国志（オブジェクトの操作）</title>
+  </head>
+  <body>
+    <h1>三国志武将</h1>
+    <button class="gi">魏</button>
+    <button class="go">呉</button>
+    <button class="shoku">蜀</button>
+    <ul class="result">
+      <!-- ここに表示させます。 -->
+    </ul>
+
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.js"
+      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      const threeKingdoms = [
+        {
+          name: "魏",
+          king: "曹操",
+          generals: ["張遼", "司馬懿", "夏侯惇", "郭嘉", "夏侯淵"],
+        },
+        {
+          name: "呉",
+          king: "孫堅",
+          generals: ["周瑜", "太史慈", "魯粛", "甘寧", "陸遜"],
+        },
+        {
+          name: "蜀",
+          king: "劉備",
+          generals: ["関羽", "張飛", "趙雲", "諸葛亮", "姜維"],
+        },
+      ];
+    </script>
+    <script>
+      //ここに記述していきます。
+      const KingdomsBtn = document.querySelectorAll("button");
+      console.log(KingdomsBtn);
+
+      const result = document.querySelector(".result");
+      console.log(result);
+
+      for (let i = 0; i < KingdomsBtn.length; i++) {
+        KingdomsBtn[i].addEventListener("click", function () {
+          result.innerHTML = "";
+
+          const kingdom = threeKingdoms[i];
+
+          for (const general of kingdom.generals) {
+            const generalLi = document.createElement("li");
+            generalLi.textContent = general;
+            result.appendChild(generalLi);
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
