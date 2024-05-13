@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>天気予報APIアプリ</title>
+    <style>
+      table,
+      th,
+      td {
+        border: 1px solid #000;
+        border-collapse: collapse;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="threeDays"></div>
+    <img id="weatherImage" src="" alt="Weather image" />
+
+    <script src="weathercodes.js"></script>
+    <script>
+      //東海4県のコード番号をオブジェクトの配列にしておきます。
+      const codeNums = [
+        { 愛知県: 230000 },
+        { 岐阜県: 210000 },
+        { 三重県: 240000 },
+        { 静岡県: 220000 },
+      ];
+
+      //テンプレートリテラルでconst urlに代入します。
+      const url = `https://www.jma.go.jp/bosai/forecast/data/overview_forecast/${codeNums[0]["愛知県"]}.json`;
+
+      //fetch()でデータを取得する。
+      fetch(url)
+        .then(function (response) {
+          if (response.status !== 200) {
+            console.log(
+              "問題がありました。ステータスコード:" + response.status
+            );
+            return;
+          }
+          // responseのテキストを調べる
+          response.json().then(function (weather) {
+            console.log(weather);
+            const result = document.querySelector(".target");
+            const ulElm = document.createElement("ul");
+            for (const key in weather) {
+              ulElm.insertAdjacentHTML("beforeend", `<li>${weather[key]}</li>`);
+            }
+            result.append(ulElm);
+          });
+        })
+        .catch(function (err) {
+          console.log("Fetchエラー:", err);
+        });
+      // -----------
+
+      const weekUrl = `https://www.jma.go.jp/bosai/forecast/data/forecast/${codeNums[0]["愛知県"]}.json`;
+      fetch(weekUrl)
+        .then(function (response) {
+          if (response.status !== 200) {
+            console.log(
+              "問題がありました。ステータスコード:" + response.status
+            );
+            return;
+          }
+          response.json().then(function (data) {
+            console.log(data);
+
+            //愛知県西部の天気予報をwest、日付をweatherDateに代入します。
+            const west = data[0].timeSeries[0].areas[0];
+            const weatherDate = data[0].timeSeries[0].timeDefines;
+
+            //地域<h1>西部</h1>を挿入する。
+            const result = document.querySelector(".threeDays");
+            result.innerHTML = `<h1>${west.area.name}</h1>`;
+
+            //ulをresultに挿入
+            const ulElm = document.createElement("ul");
+            result.appendChild(ulElm);
+
+            //今回はfor文で配列をループ（他のループでも可）
+            for (let i = 0; i < west.weathers.length; i++) {
+              const liElm = document.createElement("li");
+
+              //new Date()で月日を取得します。※月は0から始まるので+1
+              liElm.innerHTML = `${
+                new Date(weatherDate[i]).getMonth() + 1
+              }月${new Date(weatherDate[i]).getDate()}日：${west.weathers[i]}`;
+
+              //liをulに挿入しますlet weatherImage = document.getElementById('weatherImage');
+
+              let weatherImage = document.getElementById("weatherImage");
+
+              ulElm.appendChild(liElm);
+            }
+          });
+        })
+        .catch(function (err) {
+          console.log("Fetchエラー:", err);
+        });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>JSクイズ④</title>
+  </head>
+  <body>
+    <form>
+      <label for="postal-code"
+        >〒
+        <input type="text" name="postal-code" id="postal-code" value="4500002"
+      /></label>
+      <button type="button">住所表示</button>
+    </form>
+    <div class="result">
+      <dl>
+        <dt>住所</dt>
+        <dd></dd>
+      </dl>
+    </div>
+  </body>
+  <script
+    src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+    crossorigin="anonymous"
+  ></script>
+  <script>
+    //こちらのコードのみを送ってください。
+
+    let button = document.querySelector("button");
+
+    button.addEventListener("click", function () {
+      let postalCode = document.querySelector("#postal-code").value;
+      let url = `https://zipcloud.ibsnet.co.jp/api/search?zipcode=${postalCode}`;
+      let resultElement = document.querySelector(".result dd");
+      fetch(url)
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          if (data.results) {
+            let address =
+              data.results[0].address1 +
+              data.results[0].address2 +
+              data.results[0].address3;
+
+            resultElement.textContent = address;
+          } else {
+            resultElement.textContent = "エラー";
+          }
+        });
+    });
+  </script>
+</html>
