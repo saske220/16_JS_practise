@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JSクイズNEO⑤</title>
+  </head>
+
+  <body>
+    <h1 class="getRank">ビジュアル女王</h1>
+    <div class="result"></div>
+
+    <h1 class="getMember">I-LAND</h1>
+    <ul class="member"></ul>
+
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      const iland2 = {
+        "I-LAND": [
+          "キム・スジョン",
+          "ナム・ユジュ",
+          "リンリン",
+          "マイ",
+          "パン・ジミン",
+          "ユ・サラン",
+          "ユイ",
+          "ユン・ジユン",
+          "チョン・セビ",
+          "チェ・ジョンウン",
+          "ココ",
+          "フウコ",
+        ],
+        GROUND: [
+          "キム・ギュリ",
+          "キム・ミンソル",
+          "キム・チェウン",
+          "パク・イェウン",
+          "ソン・ジュウォン",
+          "オム・ジウォン",
+          "オ・ユナ",
+          "チェ・ソウル",
+        ],
+        LOSE: ["カン・ジウォン", "キム・ウンチェ", "ナナ", "ユイコ"],
+      };
+    </script>
+    <script>
+      //こちらのコードのみを送ってください。
+
+      const getRank = document.querySelector(".getRank");
+      const result = document.querySelector(".result");
+      const getMember = document.querySelector(".getMember");
+      const member = document.querySelector(".member");
+
+      getRank.addEventListener("click", function () {
+        //AI使用↓
+        const my = iland2["I-LAND"].find((member) => member === "マイ");
+        result.textContent = my ? my : "マイは見つかりませんでした";
+        //AI使用↑
+      });
+      getMember.addEventListener("click", function () {
+        member.innerHTML = "";
+        const ilandMembers = iland2["I-LAND"];
+        for (let i = 0; i < ilandMembers.length; i++) {
+          member.innerHTML += ilandMembers[i] + "<br>";
+        }
+      });
+    </script>
+  </body>
+</html>
