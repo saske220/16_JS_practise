@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>JavScriptクイズ0607</title>
+  </head>
+
+  <body>
+    <h1>DOMの操作</h1>
+    <h2>文字の書き換え</h2>
+
+    <p>今日は<span class="month" style="font-weight: bold">5月</span>です。</p>
+    <button class="change">今月は？</button>
+
+    <h2>文字の追加</h2>
+    <button class="add">記念日表示</button>
+    <div class="juneAnn"></div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      //文字の書き換え
+      const changeBtn = document.querySelector(".change");
+      const monthText = document.querySelector(".month");
+      const currentMonth = new Date().getMonth() + 1 + "月";
+
+      //ここに記述して、回答として送ってください。
+    </script>
+    <script>
+      //文字の追加
+      const anniversarys = [
+        "6月8日：バイキングの日",
+        "6月9日：リサイクルの日",
+        "6月12日：恋人の日",
+      ];
+      const addBtn = document.querySelector(".add");
+      const result = document.querySelector(".juneAnn");
+
+      //ここに記述して、回答として送ってください。
+
+      const change = document.querySelector(".change");
+      change.addEventListener("click", () => {
+        monthText.textContent = currentMonth;
+      });
+
+      const add = document.querySelector(".add");
+      add.addEventListener("click", function () {
+        result.innerHTML = "";
+        for (let i = 0; i < anniversarys.length; i++) {
+          const ul = document.createElement("ul");
+          const li = document.createElement("li");
+          li.textContent = anniversarys[i];
+          ul.appendChild(li);
+          result.appendChild(ul);
+        }
+      });
+    </script>
+  </body>
+</html>

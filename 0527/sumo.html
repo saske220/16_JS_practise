@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>クイズNEO1⑥_勝敗表</title>
+  </head>
+
+  <body>
+    <h1>尊富士</h1>
+    <img
+      src="https://www.sumo.or.jp/img/sumo_data/rikishi/270x474/20220059.jpg"
+      alt="尊富士"
+    />
+    <ul class="grades">
+      <li>横綱</li>
+      <li>所属部屋：伊勢ヶ濱</li>
+      <li>一月場所：13勝2敗 十両優勝</li>
+    </ul>
+    <button type="button">令和六年三月場所</button>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      const takerufuji = {
+        白鷹山: "勝ち",
+        大翔鵬: "勝ち",
+        天空海: "勝ち",
+        英乃海: "勝ち",
+        朝紅龍: "勝ち",
+        紫雷: "勝ち",
+        勇磨: "勝ち",
+        獅司: "勝ち",
+        欧勝海: "勝ち",
+        狼雅: "勝ち",
+        北の若: "負け",
+        輝: "勝ち:負け",
+        天照鵬: "勝ち",
+        千代栄: "勝ち",
+        時疾風: "勝ち",
+      };
+    </script>
+    <script>
+      //ここに記述したJavaScriptを送ってください。
+      //   const btn = document.querySelector("button");
+      //   btn.addEventListener("click", function () {
+      //     const grades = document.querySelector(".grades");
+      //     const list = document.createElement("li");
+      //     list.innerHTML = "北勝富士：勝ち";
+      //     grades.appendChild(list);
+      //   });
+
+      let win = 0;
+      let lose = 0;
+
+      for (let key in takerufuji) {
+        if (takerufuji[key] === "勝ち") {
+          win++;
+        } else if (takerufuji[key] === "負け") {
+          lose++;
+        }
+      }
+
+      const btn = document.querySelector("button");
+      btn.addEventListener("click", function () {
+        const grades = document.querySelector(".grades");
+        const listItem = document.createElement("li");
+        listItem.innerHTML = `三月場所${win}勝${lose}敗`;
+        grades.appendChild(listItem);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>コースイ確率アプリ</title>
+    <style>
+      h1 {
+        text-align: center;
+      }
+
+      body {
+        border: 1px solid #000;
+        padding: 5px;
+      }
+      .rain {
+        position: absolute;
+        width: 15px;
+        height: 100px;
+        background: rgb(0, 157, 255);
+        border-radius: 50%;
+        bottom: 100%;
+        animation: fall linear infinite;
+        opacity: 0.8;
+      }
+
+      @keyframes fall {
+        to {
+          transform: translateY(100vh);
+        }
+      }
+
+      .sun {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 150px;
+        height: 155px;
+        background: rgb(255, 174, 0);
+        border-radius: 50%;
+        animation: spin 5s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .cloud {
+        position: absolute;
+        top: 150px;
+        right: 10px;
+        width: 200px;
+        height: 100px;
+        background: lightgray;
+        border-radius: 50%;
+        opacity: 0.8;
+        animation: move 10s linear infinite;
+      }
+      .cloud::after {
+        content: "";
+        position: absolute;
+        top: -5%;
+        left: 50%;
+        width: 180px;
+        height: 90px;
+        background: lightgray;
+        border-radius: 50%;
+        opacity: 0.8;
+      }
+      .cloud::before {
+        content: "";
+        position: absolute;
+        top: -5%;
+        left: -10%;
+        width: 200px;
+        height: 110px;
+        background: lightgray;
+        border-radius: 50%;
+        opacity: 0.8;
+      }
+      @keyframes move {
+        0% {
+        }
+        100% {
+          right: 100vw;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>コースイ確率アプリ</h1>
+    <div class="precipitation">
+      <table></table>
+    </div>
+  </body>
+</html>
+
+<script>
+  const codeNums = [
+    { 愛知県: 230000 },
+    { 岐阜県: 210000 },
+    { 三重県: 240000 },
+    { 静岡県: 220000 },
+  ];
+  const weekUrl = `https://www.jma.go.jp/bosai/forecast/data/forecast/${codeNums[0]["愛知県"]}.json`;
+  fetch(weekUrl)
+    .then(function (response) {
+      if (response.status !== 200) {
+        console.log("問題がありました。ステータスコード:" + response.status);
+        return;
+      }
+      response.json().then(function (data) {
+        console.log(data);
+        //東部を挿入します。
+        const precipAria = document.querySelector(".precipitation");
+        const head1 = document.createElement("h1");
+        head1.innerHTML = `${data[0].timeSeries[1].areas[1].area.name}降水率`;
+        precipAria.insertAdjacentElement("beforebegin", head1);
+
+        //tableを取得
+        const precipTable = document.querySelector(".precipitation table");
+
+        //jsonから時間を取得する
+        const timeStamp = data[0].timeSeries[1].timeDefines;
+        console.log(timeStamp);
+
+        //jsonから降水確率を取得する
+        const pops = data[0].timeSeries[1].areas[1].pops;
+        console.log(pops);
+
+        //時間の行を作成
+        const trElem1 = document.createElement("tr");
+
+        //今回はfor..of文でループします。
+        for (const time of timeStamp) {
+          const data = new Date(time);
+          const thElm = document.createElement("th");
+
+          precipTable.appendChild(trElem1);
+        }
+
+        // 降水確率の行を作成
+        const trElem2 = document.createElement("tr");
+
+        for (const percent of pops) {
+          const thElm = document.createElement("th");
+          //   thElm.innerHTML = `${percent}%`;
+          thElm.innerHTML = `${percent}%`; // 降水確率を表示
+          const body = document.querySelector("body");
+          let latestPop = pops[pops.length - 1]; // 直近の降水確率を取得
+
+          if (latestPop >= 20) {
+            // 雨滴のアニメーションを作成
+            for (let i = 0; i < 1; i++) {
+              const rainDrop = document.createElement("div");
+              rainDrop.className = "rain";
+              rainDrop.style.left = `${Math.random() * 100}vw`;
+              rainDrop.style.animationDuration = `${Math.random() * 2 + 0.1}s`;
+              rainDrop.style.animationDelay = `${Math.random() * 2}s`;
+              body.appendChild(rainDrop);
+            }
+          }
+          if (latestPop >= 20) {
+            // 雨滴のアニメーションを作成
+            for (let i = 0; i < 5; i++) {
+              const rainDrop = document.createElement("div");
+              rainDrop.className = "rain";
+              rainDrop.style.left = `${Math.random() * 100}vw`;
+              rainDrop.style.animationDuration = `${Math.random() * 2 + 0.1}s`;
+              rainDrop.style.animationDelay = `${Math.random() * 2}s`;
+              body.appendChild(rainDrop);
+            }
+          }
+          if (latestPop >= 90) {
+            // 雨滴のアニメーションを作成
+            for (let i = 0; i < 10; i++) {
+              const rainDrop = document.createElement("div");
+              rainDrop.className = "rain";
+              rainDrop.style.left = `${Math.random() * 100}vw`;
+              rainDrop.style.animationDuration = `${Math.random() * 2 + 0.1}s`;
+              rainDrop.style.animationDelay = `${Math.random() * 2}s`;
+              body.appendChild(rainDrop);
+            }
+          }
+          if (latestPop < 40) {
+            // 太陽のアニメーションを作成
+            const sun = document.createElement("div");
+            sun.className = "sun";
+            body.appendChild(sun);
+          }
+
+          if (latestPop >= 10 && latestPop < 20) {
+            // 雲のアニメーションを作成
+            for (let i = 0; i < 1; i++) {
+              // 雲の数を200に増やす
+              const cloud = document.createElement("div");
+              cloud.className = "cloud";
+              cloud.style.animationDuration = `${Math.random() * 2 + 0.1}s`;
+              body.appendChild(cloud);
+            }
+          }
+
+          trElem2.appendChild(thElm);
+          precipTable.appendChild(trElem2);
+        }
+      });
+    })
+
+    .catch(function (err) {
+      console.log("Fetchエラー:", err);
+    });
+</script>
+<script>
+  // 現在の時間を取得
+  const now = new Date();
+  const hour = now.getHours();
+
+  // 背景色を設定
+  const body = document.querySelector("body");
+  const h1 = document.querySelector("h1");
+
+  if (hour < 6 || hour >= 18) {
+    // 夜間（18時〜6時）は黒背景
+    body.style.backgroundColor = "#333";
+  } else if (hour < 12) {
+    // 朝（6時〜12時）は青背景
+    body.style.backgroundColor = "#0ff";
+  } else {
+    // 昼（12時〜18時）は黄色背景
+    body.style.backgroundColor = "#fd0";
+  }
+</script>
