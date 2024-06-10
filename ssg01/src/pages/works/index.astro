@@ -1,0 +1,11 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+const workPages = await getCollection('works');
+console.log(workPages);
+---
+<Layout title="作品一覧" description="作品一覧ページです。">
+  <ul>
+    {workPages.map(productPage => (<li><a href={`/works/${productPage.slug}`}>{productPage.data.title}</a></li> ))}
+    </ul>
+</Layout>
