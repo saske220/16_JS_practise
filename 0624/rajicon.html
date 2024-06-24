@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScriptクイズ⑩</title>
+    <style>
+      .player {
+        position: fixed;
+        bottom: 0;
+        left: calc(50% - 50px);
+        width: 100px;
+      }
+
+      .airPlane {
+        position: absolute;
+        top: 20vh;
+        left: calc(100% - 125px);
+        width: 120px;
+        transition-property: left;
+        transition-duration: 1s;
+        transition-timing-function: ease-in-out;
+        transform: scale(1, 1);
+      }
+
+      .move {
+        left: 0;
+      }
+
+      .inversion {
+        transform: scale(-1, 1);
+      }
+    </style>
+  </head>
+
+  <body>
+    <img
+      src="https://lh3.googleusercontent.com/d/1V885KUWkm-kJTm20NzW1ivSrQV_0tWvx"
+      alt="飛行機"
+      class="airPlane inversion'"
+    />
+    <img
+      src="https://lh3.googleusercontent.com/d/1l1eo5sQE92obD2JmbZ9O-LGCUbFPex8X"
+      alt="操縦者"
+      class="player"
+    />
+
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      //全てのJavaScriptコードを送ってください。
+      const plane = document.querySelector(".airPlane");
+      const player = document.querySelector(".player");
+      console.log(plane);
+      console.log(player);
+
+      player.addEventListener("click", function () {
+        player.classList.toggle("inversion");
+        console.log("クリックされました");
+        if (plane.classList.contains("move") === false) {
+          plane.classList.toggle("move");
+          plane.classList.toggle("inversion");
+        } else {
+          plane.classList.toggle("move");
+          plane.classList.toggle("inversion");
+        }
+      });
+    </script>
+    <!-- <script>
+        //jQuery
+        //全てのJavaScriptコードを送ってください。
+$(function () {
+$('.player').on('click', function () {
+if ($('.airPlane').hasClass('move') === false) {
+$('.airPlane').toggleClass('move');
+
+} else {
+$('.airPlane').toggleClass('move');
+
+}
+});
+});
+    </script> -->
+  </body>
+</html>
